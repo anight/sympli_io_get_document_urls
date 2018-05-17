@@ -32,6 +32,5 @@ browser.open(f'https://app.sympli.io/api/v1/bundles?limit=*&project={args.projec
 documents = browser.response.json()['data']
 
 for document in documents:
-	blobUrlPrefix = document['blobUrlPrefix']
-	print(f'{blobUrlPrefix}/bundle/document.png')
+	print(f'{document["blobUrlPrefix"]}/bundle/document.png')
 
