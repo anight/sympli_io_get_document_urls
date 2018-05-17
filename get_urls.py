@@ -20,8 +20,6 @@ form['email'] = args.email
 form['password'] = args.password
 browser.submit_form(form)
 
-browser.open(f'https://app.sympli.io/app#!/projects/{args.project_id}')
-
 accessToken = unquote(browser.session.cookies['accessToken'])
 
 browser.session.headers['authorization'] = f'Bearer {accessToken}'
@@ -31,9 +29,9 @@ browser.session.headers['x-requested-with'] = 'XMLHttpRequest'
 
 browser.open(f'https://app.sympli.io/api/v1/bundles?limit=*&project={args.project_id}')
 
-j = browser.response.json()
+documents = browser.response.json()['data']
 
-for x in j['data']:
-	blobUrlPrefix = x['blobUrlPrefix']
+for document in documents:
+	blobUrlPrefix = document['blobUrlPrefix']
 	print(f'{blobUrlPrefix}/bundle/document.png')
 
