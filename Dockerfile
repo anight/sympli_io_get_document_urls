@@ -6,4 +6,4 @@ RUN pip3 install robobrowser
 
 COPY get_urls.py /workspace/
 
-ENTRYPOINT ["/usr/bin/python3", "/workspace/get_urls.py"]
+ENTRYPOINT ["/usr/bin/python3.6", "/workspace/get_urls.py"]
